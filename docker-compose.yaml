@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  ###> doctrine/doctrine-bundle ###
+  database:
+    container_name: contacts
+    image: mariadb:${MARIADB_VERSION:-10.6}
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME:-contacts}
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: ${DATABASE_USER:-user}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD:-user}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql:rw
+###< doctrine/doctrine-bundle ###
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  db-data:
+###< doctrine/doctrine-bundle ###
